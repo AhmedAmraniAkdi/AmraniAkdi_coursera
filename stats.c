@@ -62,7 +62,7 @@ int find_minimum(int* ptr, int size){
 }
 
 /* find_mean */
-float find_maximum(int* ptr, int size){
+float find_mean(int* ptr, int size){
   float sum = 0;
   // i variable for the loop
   int i;
@@ -76,11 +76,11 @@ float find_maximum(int* ptr, int size){
 /* find_median */
 float find_median(int* ptr, int size){
   float median;
-  sort(ptr, size);
+  sort_array(ptr, size);
   // size%2 == 0 checks for parity
   if( size%2 == 0){
     // average of the two middle elements
-    median = (ptr[size/2]+ptr[size/2+1])/2
+    median = (float)(ptr[size/2]+ptr[size/2-1])/2;
   } else {
     median = ptr[size/2];
   }
@@ -96,21 +96,27 @@ void print_array(int* ptr, int size){
     // %d because int
     printf(" %d,", ptr[i]);
   }
-  printf("]");
+  printf("\b]");
 }
 
 /* sort_array */
 void sort_array(int* ptr, int size){
+  // big stores the index of biggest element on each iteration
   int big;
+  // temp is used for swapping elements
+  int temp;
   // i and j variables for the loops
   int i, j;
   // i goes from 0 to size - 1, if there is only 1 element left, then that's it position
   for( i = 0; i < size - 1; i++){
-    big = ptr[i];
+    big = i;
     for(j = i + 1; j < size; j++){
-      if ( ptr[j] > big )
-        big = ptr[j];
+      if ( ptr[j] > ptr[big] )
+        big = j;
     }
+    temp = ptr[i];
+    ptr[i] = ptr[big];
+    ptr[big] = temp;
   }
 }
 
@@ -122,31 +128,32 @@ void print_statistics(int* ptr, int size, float mean, float median, int min, int
   printf("\nMaximum value: %d", max);
   printf("\nMedian of the dataset: %f", median);
   printf("\nMean of the dataset: %f", mean);
+  printf("\n");
 }
 
 
 // Main:
 void main() {
-
-  unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
+  // dataset
+  unsigned int test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
   
   // printing the array
-  print_array(test, size);
+  print_array(test, SIZE);
   
   // statistical variables
   int min, max;
   float median, mean;
   
   // statistical analysis:
-  min = find_minimum(test, size);
-  max = find_maximum(test, size);
-  median = find_median(test, size);
-  mean = find_mean(test, size);
+  min = find_minimum(test, SIZE);
+  max = find_maximum(test, SIZE);
+  median = find_median(test, SIZE);
+  mean = find_mean(test, SIZE);
   
   // print the calculated statistics
-  print_statistics(test, size, mean, median, min, max);
+  print_statistics(test, SIZE, mean, median, min, max);
 }

@@ -114,9 +114,10 @@ float find_median(int* arr, int size);
  * Function : sort_array
  * Description : accepts a pointer to the array of the dataset and its size
  * and sorts it, the function uses selection sort algorithm.
- * Selection sort : we start find the biggest element of the array then we put it
- * in the first position (ptr[0]), now the unsortedarray to sort goes from 1 to size-1;
- * we apply the same logic, until the array is fully sorted.
+ * Selection sort : we start by assuming the first element if the biggest.
+ * then we find the index of  the biggest element of the array
+ * then we swap ptr[big] with ptr[i], now the unsorted array to sort goes 
+ * from 1 to size-1; we apply the same logic, until the array is fully sorted.
  *
  * @param int *arr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
