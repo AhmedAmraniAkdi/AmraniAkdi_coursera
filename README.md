@@ -1,6 +1,6 @@
 Ahmed Amrani Akdi
 
-Repository for Coursera's Introduction to Embedded Systems Software course: Week 1 Assignements.
+Repository for Coursera's Introduction to Embedded Systems Software and Development Environments course: Week 1 Assignements.
 The source code contains functions that perform statistical analytics on a dataset:
 
 1-print_statistics() - A function that prints the statistics of an array including minimum, maximum, mean, and median.
