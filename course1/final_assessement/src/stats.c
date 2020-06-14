@@ -29,6 +29,7 @@
 
 #include <stdio.h>
 #include "stats.h"
+#include "platfom.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -89,14 +90,17 @@ float find_median(int* ptr, int size){
 
 /* print_array */
 void print_array(int* ptr, int size){
+  // verbose flag, compile time switch, for printing the array
+  #ifdef VERBOSE
   // i variable for the loop
   int i;
-  printf("\nThe array is:\n[");
+  PRINTF("\nThe array is:\n[");
   for( i = 0; i < size; i++){
     // %d because int
-    printf(" %d,", ptr[i]);
+    PRINTF(" %d,", ptr[i]);
   }
-  printf("\b]");
+  PRINTF("\b]");
+  #endif
 }
 
 /* sort_array */

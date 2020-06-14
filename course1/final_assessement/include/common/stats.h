@@ -62,6 +62,8 @@
  * Sorts first the array then takes the median :
  * If size is even then the median is the average of the two middle elements.
  * If size is odd then the median is the middle element.
+ * PRINTF is a macro defined in platform.h, if the platfom is msp432, won't print, if 
+ * platfom is host will print of -DVERBOSE is used during compilation.
  *
  * @param int *arr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
