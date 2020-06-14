@@ -127,12 +127,12 @@ void sort_array(int* ptr, int size){
 /* print_statistics */
 void print_statistics(int* ptr, int size, float mean, float median, int min, int max){
   print_array(ptr, size);
-  printf("\nSize of the array: %d", size);
-  printf("\nMinimum value: %d", min);
-  printf("\nMaximum value: %d", max);
-  printf("\nMedian of the dataset: %f", median);
-  printf("\nMean of the dataset: %f", mean);
-  printf("\n");
+  PRINTF("\nSize of the array: %d", size);
+  PRINTF("\nMinimum value: %d", min);
+  PRINTF("\nMaximum value: %d", max);
+  PRINTF("\nMedian of the dataset: %f", median);
+  PRINTF("\nMean of the dataset: %f", mean);
+  PRINTF("\n");
 }
 
 

@@ -1,13 +1,3 @@
-/******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
- *
- *****************************************************************************/
 /**
  * @file memory.h
  * @brief Abstraction of memory read and write operations
@@ -15,8 +5,8 @@
  * This header file provides an abstraction of reading and
  * writing to memory via function calls. 
  *
- * @author Alex Fosdick
- * @date April 1 2017
+ * @author Ahmed Amrani Akdi
+ * @date 14/06/2020
  *
  */
 #ifndef __MEMORY_H__
@@ -89,5 +79,70 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+/**
+ * @brief moves a length of bytes from src to dst
+ *
+ * This function takes two byte pointers (one source and one destination) 
+ * and a length of bytes to move from the source location to the destination. 
+ *
+ * @param src pointer to the length of bytes
+ * @param dst pointer to the destination
+ * @param length size_t length of the bytes
+ *
+ * @return dst pointer
+ */
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+ * @brief copies length of byte pointed by src to dst
+ *
+ * This function takes two byte pointers (one source and one destination) 
+ * and a length of bytes to copy from the source location to the destination.
+ * The behavior is undefined if there is overlap of source and destination. 
+ * Copy should still occur, but will likely corrupt your data.
+ *
+ * @param src pointer to the length of bytes
+ * @param dst pointer to the destination
+ * @param length size_t length of the bytes
+ *
+ * @return dst pointer
+ */
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length);
+
+/**
+ * @brief set all elements to value
+ *
+ * This should take a pointer to a source memory location, a length in bytes 
+ * and set all locations of that memory to a given value.
+ * if value = 0, then has the same functionality as my_memzero
+ *
+ * @param src Pointer to length of bytes
+ * @param length size_t length of the bytes
+ * @param value int value to set to
+ *
+ * @return src.
+ */
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value);
+uint8_t * my_memzero(uint8_t * src, size_t length);
+
+/**
+ * @brief reverses the array pointed by src
+ *
+ * This should take a pointer to a memory location and a length in bytes 
+ * and reverse the order of all of the bytes. 
+ *
+ * @param src Pointer to length of bytes
+ * @param length size_t length of the bytes
+ *
+ * @return src.
+ */
+uint8_t * my_reverse(uint8_t * src, size_t length);
+
+/**
+ * @brief for reserving a length of words, and for free memory pointed by src
+ */
+int32_t * reserve_words(size_t length);
+void free_words(int32_t * src);
 
 #endif /* __MEMORY_H__ */
