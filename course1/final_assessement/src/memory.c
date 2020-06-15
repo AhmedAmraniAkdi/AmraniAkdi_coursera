@@ -41,7 +41,7 @@ void clear_all(char * ptr, unsigned int size){
 uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
   // we move first the bytes to a tmp location then we copy it to dst
   // this way, we handle the overlap
-  uint8_t t = (uint8_t*)malloc(length*sizeof(uint8_t));
+  uint8_t* t = (uint8_t*)malloc(length*sizeof(uint8_t));
   size_t i;
   // copy to t
   for(i = 0; i < length; i++){
@@ -84,7 +84,7 @@ uint8_t* my_reverse(uint8_t* src, size_t length){
   // we move first the bytes to a tmp location then
   // we iterate starting from last item to first item and affecting the elements to
   // src
-  uint8_t t = (uint8_t*)malloc(length*sizeof(uint8_t));
+  uint8_t* t = (uint8_t*)malloc(length*sizeof(uint8_t));
   size_t i;
   // copy to t
   for(i = 0; i < length; i++){
