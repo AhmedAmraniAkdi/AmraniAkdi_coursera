@@ -33,7 +33,8 @@
  * Description : accepts a pointer to the array of the dataset and its size
  * and prints all the statistical analysis of the dataset to the screen, namely, 
  * the medan, the mean, the maximum and the minimum.
- *
+ * PRINTF is a macro defined in platform.h, if the platfom is msp432, won't print, if 
+ * platfom is host will print of -DVERBOSE is used during compilation.
  * @param int *arr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  * @param float mean : mean of the dataset.

@@ -9,7 +9,7 @@
  */
 #ifndef __DATA_H__
 #define __DATA_H__
- 
+#include <stdint.h> 
 /**
  * Function : my_itoa
  * Description : converts integer to ascii string
@@ -25,7 +25,7 @@ uint8_t my_itoa(uint32_t data, uint8_t * ptr, uint32_t base)
  
 /**
  * Function : my_atoi
- * Description : converts integer to ascii string
+ * Description : converts ascii string to integer
  *
  * @param uint8_t *ptr : pointer pointing to the start of the string
  * @param uint8_t digits: number of digits of the number

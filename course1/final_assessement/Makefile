@@ -9,9 +9,17 @@
 #
 #*****************************************************************************
 
+
 #------------------------------------------------------------------------------
-# <Put a Description Here>
+# Update 15/06/2020 final assessement, changed variables to reflect the new structure of 
+# folder, namely the paths
+# and added course1.h and course1.c to sources.mk
+# 
 #
+# Use: make [TARGET] [PLATFORM-OVERRIDES] [VERBOSE] [COURSE]
+# Verbose : verbose cppflag for printing the array on data.c
+# COURSE : course cppflag for COURSE1 final assessement test functions
+#------------------------------------------------------------------------------
 # Use: make [TARGET] [PLATFORM-OVERRIDES]
 #
 # Build Targets:
@@ -19,7 +27,8 @@
 #      clean: removes created files except source files
 #      compile-all: compile all and generate object files from source files (do not link)
 #      %i: generate the preprocessed output of all c-program implementation
-#      %asm: generate assembly output of c-program implementation files and the final output executable
+#      %asm: generate assembly output of c-program implementation files and the final 
+#          output executable
 #      %o: generate the object file for all c-source files (but do not link)
 #      %dep: generate the dependencies
 #
@@ -46,6 +55,12 @@ include sources.mk
 # Platform Overrides
 PLATFORM := HOST
 
+# verbose for printing array 
+VERBOSE = NOVERBOSE
+
+# COURSE for course testing funtions but already defined in instructor's course1.h?
+# COURSE = COURSE1
+
 # General flags for both platforms
 FLAGS := -Wall \
 	 -Werror \
@@ -58,7 +73,7 @@ TARGET := c1m2
 # depending on platform, which command to execute
 ifeq ($(PLATFORM), MSP432)
     # Architecture specific variables
-    LINKER_FILE = -Xlinker -T ../msp432p401r.lds
+    LINKER_FILE = -Xlinker -T msp432p401r.lds
     CPU = cortex-m4
     ARCH = armv7e-m
     SPECS = nosys.specs
@@ -82,11 +97,14 @@ ifeq ($(PLATFORM), MSP432)
     CPPFLAGS = -DMSP432 $(INCLUDES)
 
     # Architecture specific source files
-    SRCS =   main.c \
-	     memory.c \
-	     interrupts_msp432p401r_gcc.c \
-	     startup_msp432p401r_gcc.c \
-	     system_msp432p401r.c
+    SRCS =   src/main.c \
+	     src/memory.c \
+	     src/data.c \
+	     src/corse.c \
+	     src/stats.c \
+	     src/interrupts_msp432p401r_gcc.c \
+	     src/startup_msp432p401r_gcc.c \
+	     src/system_msp432p401r.c
 
     SIZE = arm-none-eabi-size
     OBJDMP = arm-none-eabi-objdump
@@ -95,14 +113,21 @@ else
     #Compiler flags and defines
     CC = gcc
     CFLAGS = $(FLAGS)
-    CPPFLAGS = -DHOST $(INCLUDES)
+    ifeq($(VERBOSE), VERBOSE)
+    	CPPFLAGS = -DHOST -DVERBOSE $(INCLUDES)
+    else
+    	CPPFLAGS = -DHOST $(INCLUDES)
+    endif
     LDFLAGS = -Wl,-Map=$(TARGET).map
     SIZE = size
     OBJDMP = objdump
     
     # Source files for the host
-    SRCS =   main.c \
-	     memory.c \
+    SRCS =   src/main.c \
+	     src/memory.c \
+	     src/data.c \
+	     src/course1.c \
+	     src/stats.c
 
 endif
 
