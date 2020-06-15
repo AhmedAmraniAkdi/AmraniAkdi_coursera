@@ -1,129 +1,131 @@
+/******************************************************************************
+ * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ *
+ * Redistribution, modification or use of this software in source or binary
+ * forms is permitted as long as the files maintain this copyright. Users are 
+ * permitted to modify this and use it to learn about the field of embedded
+ * software. Alex Fosdick and the University of Colorado are not liable for any
+ * misuse of this material. 
+ *
+ *****************************************************************************/
 /**
- * @file stats.h
- * @brief Header file for statistical analysis functions.
+ * @file course1.h 
+ * @brief This file is to be used to course 1 final assessment.
  *
- * This file contains the following statistical analysis functions:
- *
- * print_statistics - A function that prints the statistics of an array including 
- * minimum, maximum, mean, and median.
- *
- * print_array - Given an array of data and a length, prints the array to the screen
- *
- * find_median - Given an array of data and a length, returns the median value
- *
- * find_mean - Given an array of data and a length, returns the mean
- *
- * find_maximum - Given an array of data and a length, returns the maximum
- *
- * find_minimum - Given an array of data and a length, returns the minimum
- *
- * sort_array - Given an array of data and a length, sorts the array from largest to
- * smallest. (The zeroth Element should be the largest value, and the last element (n-1)
- * should be the smallest value. )
- *
- * @author Ahmed Amrani Akdi
- * @date 26/05/2020
+ * @author Alex Fosdick
+ * @date April 2, 2017
  *
  */
-#ifndef __STATS_H__
-#define __STATS_H__
- 
-/**
- * Function : print_statistics
- * Description : accepts a pointer to the array of the dataset and its size
- * and prints all the statistical analysis of the dataset to the screen, namely, 
- * the medan, the mean, the maximum and the minimum.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- * @param float mean : mean of the dataset.
- * @param float median : median of the dataset.
- * @param int min : minimum value of the dataset.
- * @param int max : maximum value of the dataset.
- */
- 
- void print_statistics(int* arr, int size, float mean, float median, int min, int max);
- 
-/**
- * Function : print_array
- * Description : accepts a pointer to the array of the dataset and its size
- * and prints it to the screen.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- */
- 
- void print_array(int* arr, int size);
- 
-/**
- * Function : find_median
- * Description : accepts a pointer to the array of the dataset and its size
- * and returns the median element of the dataset.
- * Sorts first the array then takes the median :
- * If size is even then the median is the average of the two middle elements.
- * If size is odd then the median is the middle element.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- *
- * @return float median : the median of the dataset.
- */
- 
-float find_median(int* arr, int size);
- 
-/**
- * Function : mean
- * Description : accepts a pointer to the array of the dataset and its size
- * and returns the mean value of the dataset.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- *
- * @return float mean : the mean of the dataset.
- */
- 
- float mean(int* arr, int size);
- 
-/**
- * Function : find_maximum
- * Description : accepts a pointer to the array of the dataset and its size
- * and returns the maximum value of the dataset.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- *
- * @return int max : maximum value of the dataset.
- */
- 
- int find_maximum(int* arr, int size);
- 
-/**
- * Function : find_minimum
- * Description : accepts a pointer to the array of the dataset and its size
- * and returns the minimum value of the dataset.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- *
- * @return int min : minimum value of the dataset.
- */
- 
- int find_minimum(int* arr, int size);
- 
-/**
- * Function : sort_array
- * Description : accepts a pointer to the array of the dataset and its size
- * and sorts it, the function uses selection sort algorithm.
- * Selection sort : we start by assuming the first element if the biggest.
- * then we find the index of  the biggest element of the array
- * then we swap ptr[big] with ptr[i], now the unsorted array to sort goes 
- * from 1 to size-1; we apply the same logic, until the array is fully sorted.
- *
- * @param int *arr : Pointer to array containing the dataset.
- * @param int size : size of the array containing the dataset.
- */
- 
- void sort_array(int* arr, int size);
+#ifndef __COURSE1_H__
+#define __COURSE1_H__
 
+#include <stdint.h>
 
-#endif /* __STATS_H__ */
+#define DATA_SET_SIZE_W (10)
+#define MEM_SET_SIZE_B  (32)
+#define MEM_SET_SIZE_W  (8)
+#define MEM_ZERO_LENGTH (16)
+
+#define TEST_MEMMOVE_LENGTH (16)
+#define TEST_ERROR          (1)
+#define TEST_NO_ERROR       (0)
+#define TESTCOUNT           (8)
+
+/**
+ * @brief function to run course1 materials
+ * 
+ * This function calls some various simple tests that you can run to test 
+ * your code for the course 1 final assesment. The contents of these functions
+ * have been provided. 
+ *
+ * @return void
+ */
+void course1(void);
+
+/**
+ * @brief function to run course1 data operations
+ * 
+ * This function calls the my_itoa and my_atoi functions to validate they
+ * work as expected for hexadecimal numbers.
+ *
+ * @return void
+ */
+int8_t test_data1();
+
+/**
+ * @brief function to run course1 data operations
+ * 
+ * This function calls the my_itoa and my_atoi functions to validate they
+ * work as expected for decimal numbers. 
+ *
+ * @return void
+ */
+int8_t test_data2();
+
+/**
+ * @brief function to test the non-overlapped memmove operation
+ * 
+ * This function calls the memmove routine with two sets of data that do not
+ * over lap in anyway. This function should print that a move worked correctly
+ * for a move from source to destination.
+ *
+ * @return void
+ */
+int8_t test_memmove1();
+
+/**
+ * @brief function to test an overlapped Memmove operation Part 1
+ * 
+ * This function calls the memmove routine with two sets of data that not
+ * over lap. Overlap exists at the start of the destination and the end of the
+ * source pointers. This function should print that a move worked correctly
+ * for a move from source to destination regardless of overlap.
+ *
+ * @return void
+ */
+int8_t test_memmove2();
+
+/**
+ * @brief function to run course1 memmove overlapped test
+ * 
+ * This function calls the memmove routine with two sets of data that not
+ * over lap. Overlap exists at the start of the source and the end of the
+ * destination pointers. This function should print that a move worked correctly
+ * for a move from source to destination regardless of overlap.
+ *
+ * @return void
+ */
+int8_t test_memmove3();
+
+/**
+ * @brief function to test the memcopy functionality
+ * 
+ * This function calls the my_memcopy functions to validate a copy works
+ * correctly. 
+ *
+ * @return void
+ */
+int8_t test_memcopy();
+
+/**
+ * @brief function to test the memset and memzero functionality
+ * 
+ * This function calls the memset and memzero functions. This shoudl zero out
+ * the bytes from [] to []. This should set the bytes [] to [] with 0xFF.
+ *
+ * @return void
+ */
+int8_t test_memset();
+
+/**
+ * @brief function to test the reverse functionality
+ * 
+ * This function calls the my_reverse function to see if a give set of ASCII
+ * characters will properly reverse.
+ *
+ * @return void
+ */
+int8_t test_reverse();
+
+#endif /* __COURSE1_H__ */
+
