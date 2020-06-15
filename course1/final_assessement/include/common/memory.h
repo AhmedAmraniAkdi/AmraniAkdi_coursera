@@ -12,6 +12,7 @@
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
 #include <stdint.h>
+#include <stdlib.h>
 /**
  * @brief Sets a value of a data array 
  *
@@ -143,6 +144,6 @@ uint8_t * my_reverse(uint8_t * src, size_t length);
  * @brief for reserving a length of words, and for free memory pointed by src
  */
 int32_t * reserve_words(size_t length);
-void free_words(int32_t * src);
+void free_words(uint32_t * src);
 
 #endif /* __MEMORY_H__ */

@@ -28,6 +28,7 @@
 #ifndef __STATS_H__
 #define __STATS_H__
  
+#include <stdint.h>
 /**
  * Function : print_statistics
  * Description : accepts a pointer to the array of the dataset and its size
@@ -35,7 +36,7 @@
  * the medan, the mean, the maximum and the minimum.
  * PRINTF is a macro defined in platform.h, if the platfom is msp432, won't print, if 
  * platfom is host will print of -DVERBOSE is used during compilation.
- * @param int *arr : Pointer to array containing the dataset.
+ * @param uint8_t* ptr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  * @param float mean : mean of the dataset.
  * @param float median : median of the dataset.
@@ -43,18 +44,18 @@
  * @param int max : maximum value of the dataset.
  */
  
- void print_statistics(int* arr, int size, float mean, float median, int min, int max);
+ void print_statistics(uint8_t* ptr, int size, float mean, float median, int min, int max);
  
 /**
  * Function : print_array
  * Description : accepts a pointer to the array of the dataset and its size
  * and prints it to the screen.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param uint8_t* ptr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  */
  
- void print_array(int* arr, int size);
+ void print_array(uint8_t* ptr, int size);
  
 /**
  * Function : find_median
@@ -66,52 +67,52 @@
  * PRINTF is a macro defined in platform.h, if the platfom is msp432, won't print, if 
  * platfom is host will print of -DVERBOSE is used during compilation.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param unsigned int* ptr: Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  *
  * @return float median : the median of the dataset.
  */
  
-float find_median(int* arr, int size);
+float find_median(unsigned int* ptr, int size);
  
 /**
  * Function : mean
  * Description : accepts a pointer to the array of the dataset and its size
  * and returns the mean value of the dataset.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param unsigned int* ptr: Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  *
  * @return float mean : the mean of the dataset.
  */
  
- float mean(int* arr, int size);
+ float mean(unsigned int* ptr, int size);
  
 /**
  * Function : find_maximum
  * Description : accepts a pointer to the array of the dataset and its size
  * and returns the maximum value of the dataset.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param unsigned int* ptr: Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  *
  * @return int max : maximum value of the dataset.
  */
  
- int find_maximum(int* arr, int size);
+ int find_maximum(unsigned int* ptr, int size);
  
 /**
  * Function : find_minimum
  * Description : accepts a pointer to the array of the dataset and its size
  * and returns the minimum value of the dataset.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param unsigned int* ptr: Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  *
  * @return int min : minimum value of the dataset.
  */
  
- int find_minimum(int* arr, int size);
+ int find_minimum(unsigned int* ptr, int size);
  
 /**
  * Function : sort_array
@@ -122,11 +123,11 @@ float find_median(int* arr, int size);
  * then we swap ptr[big] with ptr[i], now the unsorted array to sort goes 
  * from 1 to size-1; we apply the same logic, until the array is fully sorted.
  *
- * @param int *arr : Pointer to array containing the dataset.
+ * @param unsigned int* ptr : Pointer to array containing the dataset.
  * @param int size : size of the array containing the dataset.
  */
  
- void sort_array(int* arr, int size);
+ void sort_array(unsigned int* ptr, int size);
 
 
 #endif /* __STATS_H__ */

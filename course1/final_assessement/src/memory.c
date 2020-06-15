@@ -11,7 +11,9 @@
  *
  */
 #include "memory.h"
-#include <stdint.h>
+//#include <stdint.h>
+//#include <stddef.h>
+//#include <stdlib.h>
 /***********************************************************
  Function Definitions
 ***********************************************************/
@@ -109,15 +111,8 @@ int32_t * reserve_words(size_t length){
   return ptr;
 }
 
-void free_words(int32_t * src)
+void free_words(uint32_t * src){
   // frees memory pointed by src;
   free(src);
 }
-
-
-
-
-
-
-
 

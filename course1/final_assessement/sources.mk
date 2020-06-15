@@ -10,13 +10,13 @@
 #*****************************************************************************
 
 # Source file paths
-SOURCES=	src/main.c \
-		src/memory.c \
-		src/data.c \
-		src/course1.c \
-		src/stats.c
+SOURCES=	./src/main.c \
+		./src/memory.c \
+		./src/data.c \
+		./src/course1.c \
+		./src/stats.c
 
 # Include file paths
-INCLUDES=	-I include/common \
-		-I include/CMSIS \
-		-I include/msp432
+INCLUDES=	-I ./include/common \
+		-I ./include/CMSIS \
+		-I ./include/msp432

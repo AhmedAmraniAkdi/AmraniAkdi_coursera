@@ -21,7 +21,7 @@
  * @return uint8_t lenght : length of the resulting string
  */
  
-uint8_t my_itoa(uint32_t data, uint8_t * ptr, uint32_t base)
+uint8_t my_itoa(uint32_t data, uint8_t * ptr, uint32_t base);
  
 /**
  * Function : my_atoi
@@ -34,6 +34,6 @@ uint8_t my_itoa(uint32_t data, uint8_t * ptr, uint32_t base)
  * @return uint32_t num: the resulting integer from converting the ascii string
  */
  
-int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
+int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base);
 
 #endif /* __DATA_H__ */

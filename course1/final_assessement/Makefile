@@ -58,8 +58,8 @@ PLATFORM := HOST
 # verbose for printing array 
 VERBOSE = NOVERBOSE
 
-# COURSE for course testing funtions but already defined in instructor's course1.h?
-# COURSE = COURSE1
+# COURSE for course testing funtions
+COURSE = NOCOURSE
 
 # General flags for both platforms
 FLAGS := -Wall \
@@ -68,7 +68,7 @@ FLAGS := -Wall \
 	 -O0 \
 	 -std=c99
 
-TARGET := c1m2
+TARGET := c1m3
 
 # depending on platform, which command to execute
 ifeq ($(PLATFORM), MSP432)
@@ -97,14 +97,14 @@ ifeq ($(PLATFORM), MSP432)
     CPPFLAGS = -DMSP432 $(INCLUDES)
 
     # Architecture specific source files
-    SRCS =   src/main.c \
-	     src/memory.c \
-	     src/data.c \
-	     src/corse.c \
-	     src/stats.c \
-	     src/interrupts_msp432p401r_gcc.c \
-	     src/startup_msp432p401r_gcc.c \
-	     src/system_msp432p401r.c
+    SRCS =   ./src/main.c \
+	     ./src/memory.c \
+	     ./src/data.c \
+	     ./src/corse.c \
+	     ./src/stats.c \
+	     ./src/interrupts_msp432p401r_gcc.c \
+	     ./src/startup_msp432p401r_gcc.c \
+	     ./src/system_msp432p401r.c
 
     SIZE = arm-none-eabi-size
     OBJDMP = arm-none-eabi-objdump
@@ -113,22 +113,26 @@ else
     #Compiler flags and defines
     CC = gcc
     CFLAGS = $(FLAGS)
-    ifeq($(VERBOSE), VERBOSE)
-    	CPPFLAGS = -DHOST -DVERBOSE $(INCLUDES)
-    else
-    	CPPFLAGS = -DHOST $(INCLUDES)
-    endif
+    CPPFLAGS = -DHOST $(INCLUDES) # -DVERBOSE -DCOURSE1
     LDFLAGS = -Wl,-Map=$(TARGET).map
     SIZE = size
     OBJDMP = objdump
     
     # Source files for the host
-    SRCS =   src/main.c \
-	     src/memory.c \
-	     src/data.c \
-	     src/course1.c \
-	     src/stats.c
+    SRCS =   ./src/main.c \
+	     ./src/memory.c \
+	     ./src/data.c \
+	     ./src/course1.c \
+	     ./src/stats.c
 
+endif
+
+ifeq ($(VERBOSE), VERBOSE)
+    CPPFLAGS += -DVERBOSE
+endif
+
+ifeq ($(COURSE), COURSE1)
+    CPPFLAGS += -DCOURSE1
 endif
 
 # using a list of source files to generate other variables
@@ -136,6 +140,9 @@ OBJS := $(SRCS:.c=.o)
 DEPS := $(SRCS:.c=.dep)
 ASMS := $(SRCS:.c=.asm)
 PREP := $(SRCS:.c=.i)
+
+# just checking
+print-%  : ; @echo $* = $($*)
 
 # Generate the object file for all c-source files (but do not link)
 # $< first prerequisite, $@ target, % for pattern matching

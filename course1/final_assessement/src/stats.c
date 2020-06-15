@@ -27,15 +27,15 @@
  */
 
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "stats.h"
-#include "platfom.h"
+#include "platform.h"
 
 /* Size of the Data Set */
 #define SIZE (40)
 
 /* find_maximum */
-int find_maximum(int* ptr, int size){
+int find_maximum(unsigned int* ptr, int size){
   // give the first element to max
   int max = ptr[0];
   // i variable for the loop
@@ -49,7 +49,7 @@ int find_maximum(int* ptr, int size){
 }
 
 /* find_minimum */
-int find_minimum(int* ptr, int size){
+int find_minimum(unsigned int* ptr, int size){
   // give the first element to min
   int min = ptr[0];
   // i variable for the loop
@@ -63,7 +63,7 @@ int find_minimum(int* ptr, int size){
 }
 
 /* find_mean */
-float find_mean(int* ptr, int size){
+float find_mean(unsigned int* ptr, int size){
   float sum = 0;
   // i variable for the loop
   int i;
@@ -75,7 +75,7 @@ float find_mean(int* ptr, int size){
 }
 
 /* find_median */
-float find_median(int* ptr, int size){
+float find_median(unsigned int* ptr, int size){
   float median;
   sort_array(ptr, size);
   // size%2 == 0 checks for parity
@@ -89,7 +89,7 @@ float find_median(int* ptr, int size){
 }
 
 /* print_array */
-void print_array(int* ptr, int size){
+void print_array(uint8_t* ptr, int size){
   // verbose flag, compile time switch, for printing the array
   #ifdef VERBOSE
   // i variable for the loop
@@ -104,7 +104,7 @@ void print_array(int* ptr, int size){
 }
 
 /* sort_array */
-void sort_array(int* ptr, int size){
+void sort_array(unsigned int* ptr, int size){
   // big stores the index of biggest element on each iteration
   int big;
   // temp is used for swapping elements
@@ -125,7 +125,7 @@ void sort_array(int* ptr, int size){
 }
 
 /* print_statistics */
-void print_statistics(int* ptr, int size, float mean, float median, int min, int max){
+void print_statistics(uint8_t* ptr, int size, float mean, float median, int min, int max){
   print_array(ptr, size);
   PRINTF("\nSize of the array: %d", size);
   PRINTF("\nMinimum value: %d", min);
@@ -135,7 +135,7 @@ void print_statistics(int* ptr, int size, float mean, float median, int min, int
   PRINTF("\n");
 }
 
-
+/*
 // Main:
 void main() {
   // dataset
@@ -160,4 +160,4 @@ void main() {
   
   // print the calculated statistics
   print_statistics(test, SIZE, mean, median, min, max);
-}
+}*/

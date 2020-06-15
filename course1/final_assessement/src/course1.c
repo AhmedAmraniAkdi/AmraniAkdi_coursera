@@ -326,7 +326,6 @@ void course1(void)
   uint8_t i;
   int8_t failed = 0;
   int8_t results[TESTCOUNT];
-
   results[0] = test_data1();
   results[1] = test_data2();
   results[2] = test_memmove1();
