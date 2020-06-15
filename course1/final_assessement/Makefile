@@ -9,7 +9,8 @@
 #
 #*****************************************************************************
 
-
+# EXAMPLES:
+#  make build PLATFORM=HOST VERBOSE=VERBOSE COURSE=COURSE1
 #------------------------------------------------------------------------------
 # Update 15/06/2020 final assessement, changed variables to reflect the new structure of 
 # folder, namely the paths
